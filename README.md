@@ -4,11 +4,11 @@ This project is an interactive R Shiny application to explore and model student 
 Dataset: https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success
 
 # Features
-Multi-tab interface:
-# About – overview of the project and context.
-# EDA – exploratory data analysis, distributions, and key relationships.
-# Tutorial – short guide on how to use the app.
-# App – interactive modeling dashboard.
+## Multi-tab interface:
+## About – overview of the project and context.
+## EDA – exploratory data analysis, distributions, and key relationships.
+## Tutorial – short guide on how to use the app.
+## App – interactive modeling dashboard.
 ## Multiple models:
 ### Random Forest Regression
 ### Gradient Boosting Regression
