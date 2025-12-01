@@ -1,4 +1,4 @@
-packages.install("rsconnect")
+install.packages("rsconnect")
 rsconnect::writeManifest()
 
 library(randomForest)
@@ -69,4 +69,5 @@ modelInfo <- list(
 )
 
 modelChoices <- c("-- Select Model --", names(modelInfo))
+
 
