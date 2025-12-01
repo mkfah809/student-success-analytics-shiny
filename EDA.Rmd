@@ -1,0 +1,161 @@
+---
+output: html_document
+runtime: shiny
+---
+
+# Install packages if needed & loading libraries
+
+```{r}
+if(!require(tidyverse)) install.packages("tidyverse")
+if(!require(ggplot2)) install.packages("ggplot2")
+if(!require(corrplot)) install.packages("corrplot")
+if(!require(reshape2)) install.packages("reshape2")
+if(!require(dplyr)) install.packages("dplyr")
+if(!require(tidyr)) install.packages("tidyr")
+if(!require(corrplot)) install.packages("corrplot")
+library(tidyverse)
+library(ggplot2)
+library(corrplot)
+library(reshape2)
+library(dplyr)
+library(tidyr)
+```
+
+# 1. Load the dataset
+
+```{r}
+df <- read.csv("data.csv", header = TRUE, quote = "")
+```
+
+## Inspect structure and summary
+
+```{r}
+glimpse(df)
+summary(df)
+head(df)
+```
+
+## Check missing values
+
+```{r}
+colSums(is.na(df))
+```
+
+# 2. Data Cleaning & Transformation
+
+## Convert categorical variables to factors
+
+```{r}
+df_clean <- df %>%
+  mutate(
+    Gender = factor(Gender),
+    Nacionality = factor(Nacionality),
+    Target = factor(Target)) %>%
+  drop_na()
+```
+
+# 3. Univariate Analysis
+
+## Target variable distribution
+
+```{r}
+df_clean %>%
+  count(Target) %>%
+  mutate(prop = n / sum(n)) %>%
+  ggplot(aes(x = Target, y = prop, fill = Target)) +
+  geom_col() +
+  labs(title = "Proportion of each Target Category", y = "Proportion") +
+  theme_minimal()
+```
+
+## Numeric variables: histograms
+
+```{r}
+numeric_vars <- df_clean %>% select(where(is.numeric)) %>% colnames()
+for (var in numeric_vars) {
+  print(
+    ggplot(df_clean, aes_string(x = var)) +
+      geom_histogram(binwidth = 5, fill = "steelblue", color = "black") +
+      labs(title = paste("Histogram of", var)) +
+      theme_minimal()
+  )
+}
+```
+
+## Categorical variables: bar plots
+
+```{r}
+categorical_vars <- df_clean %>% select(where(is.factor)) %>% select(-Target) %>% colnames()
+
+for (var in categorical_vars) {
+  print(
+    df_clean %>%
+      count(!!sym(var)) %>%
+      ggplot(aes_string(x = var, y = "n", fill = var)) +
+      geom_col() +
+      labs(title = paste("Distribution of", var)) +
+      theme_minimal()
+  )
+}
+```
+
+# 4. Bivariate Analysis
+
+## Numeric vs Target: Boxplots
+
+```{r}
+for (var in numeric_vars) {
+  print(
+    ggplot(df_clean, aes_string(x = "Target", y = var, fill = "Target")) +
+      geom_boxplot() +
+      labs(title = paste(var, "by Target")) +
+      theme_minimal()
+  )
+}
+```
+
+## Categorical vs Target
+
+```{r}
+for (var in categorical_vars) {
+  print(
+    df_clean %>%
+      count(!!sym(var), Target) %>%
+      ggplot(aes_string(x = var, y = "n", fill = "Target")) +
+      geom_col(position = "fill") +
+      labs(title = paste("Proportion of Target by", var), y = "Proportion") +
+      theme_minimal()
+  )
+}
+```
+# 5. Feature Engineering
+
+```{r}
+df_engineered <- df_clean %>%
+  mutate(
+    ratio_units_1st = Curricular.units.1st.sem..approved. / Curricular.units.1st.sem..enrolled.,
+    age_group = case_when(
+      Age.at.enrollment < 20 ~ "<20",
+      Age.at.enrollment < 25 ~ "20-24",
+      TRUE ~ "25+"
+    )
+  )
+```
+
+## Ratio_units_1st vs Admission_Grade
+
+```{r}
+ggplot(df_engineered, aes(x = ratio_units_1st, y = Admission.grade, color = Target)) +
+  geom_point(alpha = 0.6) +
+  labs(title = "Approved Units Ratio vs Admission Grade by Target") +
+  theme_minimal()
+```
+
+## Age group vs Target
+
+```{r}
+ggplot(df_engineered, aes(x = age_group, fill = Target)) +
+  geom_bar(position = "fill") +
+  labs(title = "Target Distribution by Age Group", y = "Proportion") +
+  theme_minimal()
+```

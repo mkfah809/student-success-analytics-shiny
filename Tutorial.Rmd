@@ -1,0 +1,16 @@
+---
+output: html_document
+runtime: shiny
+---
+
+#Tutorial
+
+##This app allows you to experiment with different predictive models on student data.
+
+**To use the application:**
+
+1.  Choose a model from the dropdown menu.
+
+2.  Select one or more predictors (based on the variables you want to include).
+
+3.  Click the “Update Model” button to generate the plots and metrics.
