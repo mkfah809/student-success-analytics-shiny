@@ -3,6 +3,11 @@ This project is an interactive R Shiny application to explore and model student 
 
 Dataset: https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success
 
+For Deploying:
+**r
+install.packages("rsconnect")
+rsconnect::writeManifest()**
+
 # Features
 ## Multi-tab interface:
 ## About – overview of the project and context.
