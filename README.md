@@ -1,5 +1,7 @@
-# Student Success Analytics – Shiny App
+# Student Success Analytics – Shiny App 
 This project is an interactive R Shiny application to explore and model student success outcomes using a real-world higher-education dataset. The app lets you run several machine learning models, compare performance, and visually inspect predictions.
+
+Dataset: https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success
 
 # Features
 Multi-tab interface:
