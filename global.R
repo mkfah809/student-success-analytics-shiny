@@ -1,3 +1,6 @@
+packages.install("rsconnect")
+rsconnect::writeManifest()
+
 library(randomForest)
 library(gbm)
 library(caret)
@@ -66,3 +69,4 @@ modelInfo <- list(
 )
 
 modelChoices <- c("-- Select Model --", names(modelInfo))
+
