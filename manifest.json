@@ -4637,7 +4637,7 @@
   },
   "files": {
     ".RData": {
-      "checksum": "e054b074f12e64447da214396c0cc80b"
+      "checksum": "e0ea800c8731e820bb01eae4b09630ab"
     },
     "About.Rmd": {
       "checksum": "c1a08719b1286724a4c7a57cf463eefb"
@@ -4682,7 +4682,7 @@
       "checksum": "982471b467e416e84d7e75c26d651ccd"
     },
     "Tutorial.Rmd": {
-      "checksum": "015f2b170c42bc1dd0e619af30527b92"
+      "checksum": "12750ad24d26cfc7de79a33af31a2b54"
     },
     "ui.R": {
       "checksum": "85653e611cf02ce5c77938a39826f3a1"
