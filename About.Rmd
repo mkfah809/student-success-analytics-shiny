@@ -57,14 +57,36 @@ This variety of features enables both regression and classification models to pr
 Before building models, I performed a thorough EDA to understand the structure, quality, and relationships in the data:
 
 -   Installed and loaded essential R libraries for data manipulation and visualization.
+
 -   Imported the student dataset and **examined its structure**, **summary statistics**, and **missing values**.
+
 -   Cleaned the data by **converting categorical variables to factors** and **removing incomplete records**.
+
 -   Analyzed single variables (Univariate analysis) through histograms and bar charts.
+
 -   Compared variables with the target outcome using boxplots and stacked bar plots.
+
 -   Created new meaningful features such as unit completion ratio and age group segmentation.
+
 -   Explored how these engineered features relate to academic performance and dropout trends.
 
-------------------------------------------------------------------------
+# Interest about mathematical/statistical details ?
+
+-   Random Forest (Regression & Classification)
+
+    -   Forest prediction for an input $y^x=B1b=1∑BTb(x)$ where $Tb(x)Tb(x)$ is the prediction of the b-th tree and $B$ is the number of trees.
+
+-   Gradient Boosting (Regression)
+
+    -   Model has the form of $FM(x)=∑m=1Mνhm(x)$ where each $hm$ is a shallow tree and $ν$ is the learning rate controlling how much each tree contributes.
+
+-   Lasso Regression (Regression)
+
+    -   It solves $minβ0,β∑i(yi−β0−xi⊤β)2+λ∑j∣βj∣$ where $λ$ controls the strength of the regularization. Larger $λ$ values produce simpler models with more coefficients set to zero.
+
+-   Decision Tree Classifier
+
+    -   Predictions are made by following the path defined by the predictors values down the tree and assigning the most frequent class in the final node.
 
 *`Author: Mina K Fahmy`*
 
